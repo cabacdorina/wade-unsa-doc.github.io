@@ -1,0 +1,18 @@
+title Sequence diagram - personal travel recommandation
+
+Client->UNSA API: currentLocation(gps) + token
+UNSA API->JWT Handler:validate token
+JWT Handler-->UNSA API: isAuth 
+
+opt isAuth
+UNSA API->PhotoController: send request
+PhotoController->GetPhotosQuery: filter by location coordinates
+GetPhotosQuery->SPARQL Endpoint: send sparlQuery with location 
+SPARQL Endpoint->Graph Data: selecting data based on query
+Graph Data-->GetPhotosQuery: send json data response
+GetPhotosQuery->SPARQL Endpoint: send sparlQuery for user preferences
+SPARQL Endpoint->Graph Data: selecting data based on  user preferences and searched history
+Graph Data-->GetPhotosQuery: send json data response
+GetPhotosQuery->GetPhotosQuery: merge data
+GetPhotosQuery->Client: send json response
+end

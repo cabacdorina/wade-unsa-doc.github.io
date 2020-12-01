@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>UnSA - Unsplash Semantic API</title>
+    <link rel="stylesheet" href="public/css/scholarly.css">
+    <link rel="stylesheet" href="public/css/custom.css">
+    <link rel="stylesheet" href="public/js/prismjs/themes/prism-coy.css">
+    <script src="public/js/prismjs/prism.js" defer></script>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+</head>
+
+<body prefix="schema: http://schema.org/ xsd: http://www.w3.org/2001/XMLSchema# sa: https://ns.science.ai/">
+    <header>
+        <p class="title">Unsplash Semantic API</p>
+        <p class="subtitle">UnSA</p>
+    </header>
+    <article id="what" typeof="schema:ScholarlyArticle" resource="#">
+        <h1>What is UnSA?</h1>
+        <section>
+            <ol>
+                <li property="schema:contributor" typeof="sa:ContributorRole">
+                    <a property="schema:contributor" href="https://github.com/cypmaster14" typeof="schema:Person">
+                        <span property="schema:givenName">Cabac</span>
+                        <span property="schema:familyName">Dorina</span>
+                    </a>
+                </li>
+            </ol>
+            <ol>
+                <li id="scienceai">
+                    <a href="https://www.info.uaic.ro/bin/Main/" typeof="schema:Corporation">
+                        <span property="schema:name">Faculty of Computer Science</span>
+                    </a>
+                </li>
+            </ol>
+        </section>
+
+        <section typeof="sa:Abstract" id="abstract">
+            <h2>Abstract</h2>
+            <p><strong>UnSA</strong> (Unsplash Semantic API) is a cross-platform application developed for photography
+                lovers.
+                The devlopement idea behind UnSA is in using the principale of semantic web by interconnecting the
+                domain photo entities such us Photo, Photogrpaher, Locations, Metadata etc </br>
+                Users will be able to compare, filter and augment photos, find locations, by its own desire, also UnSA
+                will suggest photos and offer 'smart' recommendations based on 'tag keywords, places (eg: current
+                location)'.
+            </p>
+        </section>
+        <section typeof="sa:Materials" id="technologies">
+            <h2>Technologies</h2>
+            <ul>
+                <li>
+                    <p><a href="https://jwt.io">.NET Core</a> .NET Core is a new version of .NET Framework, which is a
+                        free, open-source, general-purpose development platform maintained by Microsoft. It is a
+                        cross-platform framework that runs on Windows, macOS, and Linux operating systems.
+
+                        .NET Core Framework can be used to build different types of applications such as mobile,
+                        desktop, web, cloud, IoT, machine learning, microservices, game, etc</p>
+                </li>
+                <li>
+                    <p><a href="http://ionicframework.com/docs/">Ionic 5</a> can be used to develop cross-platform app
+                        built with web technologies.
+                        Free and open source, Ionic offers a library of mobile-optimized UI components, gestures, and
+                        tools for building fast, highly interactive apps.
+                        Ionic is based on different web framework such us Angular, React, VueJS and comes with many
+                        significant performance, usability, and feature improvements over the past versions.</p>
+                </li>
+                <li>
+                    <p><a href="https://angular.io/">Angular</a> is an application design framework and development
+                        platform for creating efficient and sophisticated single-page apps.
+                        It is based on HTML as your template language and lets you extend its syntax to build custom
+                        components. The components have related typescript files. <b>Typescript</b> is a primary
+                        language for Angular application development. It is a superset of JavaScript with design-time
+                        support for type safety and tooling. </p>
+                </li>
+                <li>
+                    <p><a href="https://jwt.io">JWT (JSON Web Tokens)</a> is an open standard (RFC 7519) that defines a
+                        compact and self-contained way for securely transmitting information between parties as a JSON
+                        object. This information can be verified and trusted because it is digitally signed. JWTs can be
+                        signed using a secret (with the HMAC algorithm) or a public/private key pair using RSA.</p>
+                </li>
+                <li>
+                    <p><a href="http://graphdb.ontotext.com/">GraphDB</a> is an enterprise ready Semantic Graph
+                        Database, compliant with W3C Standards. Semantic graph databases is similar to SQL database but
+                        is based on RDF triplestores. Also the main language used is called SPARQL and it can be used to
+                        explore and modify the stored data.</p>
+                </li>
+            </ul>
+        </section>
+        <section typeof="sa:Methods" id="architecture">
+            <h2>Architecture</h2>
+            <figure typeof="sa:Image">
+                <img src="public/resources/general_architecture.png">
+                <figcaption>
+                    <center>The general architecture of Unsplash Semantic API</center>
+                </figcaption>
+            </figure>
+            <section id="cqrs">
+                <h3>CQRS</h3>
+
+                <aside typeof="schema:WPSideBar">
+                    <center>Command and Query Responsibility Segregation
+                    </center>
+                </aside>
+                <figure typeof="sa:Image">
+                    <img src="public/resources/cqrs_pattern.png" width="140" height="350">
+                    <figcaption>
+                        <center>The general architecture CQRS</center>
+                    </figcaption>
+                </figure>
+                <p>
+                    <strong>CQRS</strong> is a design pattern. Instead of having one unified model,
+                    CQRS introduces two models: one for reads and the other one for writes.</br>
+                    <b>Why CQRS?</b></br>
+                    <li>
+                        CQRS offers a lot of benefits, such as <b>scalability</b>. If we look to an application
+                        we may notice that among create, read, updatate, delete operations, the one that is used
+                        the most is usually read. There are disproportionately more reads than writes in a 
+                        typical system. From this point of view it is important to scale them independently
+                        from each other. For example it can hosted the command side on a single server, but create
+                        a cluster of 5 servers for the queries. Because the processing of commands and queries 
+                        is asymmetrical, scaling this services asymetrical makes a lot of sense too.
+                    </li>
+                    <li>
+                        <b>Performance</b> is another benefit of CQRS. It is related to scalability, but it is
+                        not the same thing. Even if someone decides to host reads and writes on the same server,  
+                        it is still possible to apply optimization techniques that would not be possible with a single unified model.
+                        For example, just having a separate set of APIs for queries allows you to 
+                        set up a cache for that specific part of the application.
+                    </li>
+                    <li>
+                        <b>Simplicity</b> is a significant benefit.
+                        <b>Commands</b> are used to change data and <b>queries</b> are used to read data.
+                        When you treat these two models separately, you may reduce the complexity 
+                        of the application. 
+                    </li>
+                    UNSA application also allows us to make CRUD operations in order to visualize, augment, filter, compare photos.
+                </p>
+
+                <p>
+                    <strong>Services</strong> are used in our application to presents different aspects regarding domain layer's entities of photography category, 
+                    the relations between them, different filters and queries. Every service is associated with one or more specific use cases.
+                    <figure typeof="sa:Image">
+                        <img src="public/resources/use_case.png">
+                        <figcaption>
+                            <center>Generic use case diagram</center>
+                        </figcaption>
+                    </figure>
+                <ul>
+                    <li>
+                        <p><code>Photo use cases</code> <br/>
+                            There are a lot of use cases, for example we can add a photo, retrieve a photo by id,
+                            or by different criteria specified by the user. One specific use case is when a user
+                            wants to visualize photos from a specific category, a specified location or a specified
+                             photographer. 
+                            One useful  feature  could be the most downloaded or viewed photos. They can be used to
+                            understand people's preferences. This information could be used by interested people.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <code>Location use case </code><br/>
+                            Based on user geolocation and history search, the application gives personalized photos
+                            recommendations
+                            (gives photos with places to visit, places which are in users area preferences eg. museums, cinema).
+                            After we retrieve the personalized recommandation photos, the user may want to see
+                            their localization. In this situation we have a specific use case for retrieving the 
+                            locations from photos.
+                            Another use case is to see the location in which the most photos were took.  
+                        </p>
+                    </li>
+                    <li>
+                        <p><code>Photogrpaher use case</code> 
+                            A very common use case is to retrieve information about most famous photographers.
+                            The user is also able to retrieve information for a specific photographer even
+                            if this is not famous, or to retrieve all photographers and information about them.
+                            Another use case is to get locations photographed by a specific photographer.
+                        </p>
+                    </li>
+                    <li>
+                        <p><code>Metadata use case</code> <br/>
+                            The user is able to retrieve specific metadata about photos, for example
+                            getting resolution format and aspect ratio, color palette in RGB format, 
+                            camera model and camera brand.
+                            Metadata will be used in other processes like filtering and comparing photo.
+                        </p>
+                    </li>
+                </ul>
+                Each service interogates SPARQL endpoint to find information about entities and relationships between them and also to store data
+                into UNSA's RDF storage implemented with GraphDB.
+                </p>
+
+                <p>
+                    <strong>Authentication</strong> relies on the JSON Web Token (JWT). Each call to the application exposed by UNSA API
+                    requires a specific token and the access is allowed only if it is valid and it is not expired.
+                </p>
+            </section>
+
+            <section id="client-side">
+                <h3>Client-side</h3>
+                <figure typeof="sa:Image">
+                    <img src="public/resources/mocks/unsa_ui.png">
+                    <figcaption>
+                        The Home View
+                    </figcaption>
+                </figure>
+
+                The application design offers a pleasant experience, because its interface is very intuitive.
+                Also the UI is modern and relies on latest features of Ionic5. 
+                <ul>
+                    <li>
+                        <p><strong>Filter View</strong> is the starting view of the application. 
+                            Here the users receive a photo list 
+                            based on his preferences from search bar and additional combobox.
+                            The user is able to visualise and download them.
+                        </p>
+                    </li>
+
+                    <li>
+                        <p><strong>Compare View</strong> will show the difference between
+                    two selected photos starting from the metadata level(eg: aspectRatio, width, height, format) 
+                    and jumps to their content (eg: object, human, landform, animal).       
+                        </p>
+                    </li>
+
+                    <li>
+                        <p><strong>Recommandation View</strong> is the best way to find near places to visit 
+                            based on the current location and user search. For example the pair (Paris - that represents the 
+                            user's current location, [zoo, animal, monkey] - latest searched photo keywords) will request
+                            a photo list content that has images related to zoological garden in Paris.
+                        </p>
+                    </li>
+
+                    <li>
+                        <p><strong>Tags View</strong> offers the possibility to augment different photos selected by 
+                            the user. An augmentation is equivalent with adding a metadata to the photo. 
+                            The metadata is obtained after recognition step for each photo from selected photo list.
+
+                            
+                        </p>
+                    </li>
+                   
+                </ul>
+            </section>
+
+            <section id="design-details">
+                <h3>Design Details</h3>
+
+                <figure typeof="sa:Image">
+                    <img src="public/resources/sequnce_diagram_1.png">
+                    <figcaption>
+                        <center>Generic sequence diagram: photos filtering</center>
+                    </figcaption>
+                </figure>
+
+                <figure typeof="sa:Image">
+                    <img src="public/resources/sequnce_diagram_2.png">
+                    <figcaption>
+                        <center>Sequence diagram: personal travel recommandation</center>
+                    </figcaption>
+                </figure>
+
+                <ul>                 
+
+                    <li>
+                        <p>
+                            The UNSA application requires the users to be authorized. 
+                            The user must register and sing in into the app. After log in is succesfull
+                            a JWT token is generated. Every subsequent call of the UNSA API will require that token.
+                        </p>
+                    </li>
+
+                    <li>
+                        <p>
+                            The data transfer between client and backend is done through HTTP/HTTPs protocol
+                            and they are packed into json.
+                         </p>
+                    </li>                  
+
+                    <li>
+                        <p>
+                           There are a separation between queries and commands, this is done by CQRS pattern.
+                           Every HTTP/HTTPs request will be managed either by a command or query usecase.
+                           In every scenario of the usecases the access to SPARQL endpoint will rely on repositories.
+                           The SPARQL endpoint expose the GraphDB data to make the user able to modify them.
+                        </p>
+                    </li>
+                </ul>
+
+                <section id="data-modelling">
+                    <h4>Data Modelling</h4>
+
+                    <figure typeof="sa:Image">
+                        <img src="public/resources/rdf_graph.png">
+                        <figcaption>
+                            <center>The diagram representing the knowledge RDF graph </center>
+                        </figcaption>
+                    </figure>
+
+                    <p>The UNSA's main storage is the RDF solution <strong>GraphDB</strong> 
+                        offered by Ontotext software company.
+                        Every entity is saved in
+                        the graph by interconnecting the relationship with other entities and
+                        properties.</p>
+
+                    <p>In the tables below each entities' properties are described.</p>
+
+                    <figure typeof="schema:Table">
+                        <table>
+                            <thead>
+                                <tr><code>Photogrpaher</code></tr>
+                                <tr>
+                                    <th>
+                                        <center>Property</center>
+                                    </th>
+                                    <th>
+                                        <center>Type</center>
+                                    </th>
+                                    <th>
+                                        <center>Description</center>
+                                    </th>
+                                </tr>
+                            </thead>
+
+                            <tr>
+                                <td>firstName</td>
+                                <td>string</td>
+                                <td>first name of photographer</td>
+                            </tr>
+                            <tr>
+                                <td>lastName</td>
+                                <td>string</td>
+                                <td>last name of photographer</td>
+                            </tr>
+                            <tr>
+                                <td>username</td>
+                                <td>string</td>
+                                <td> username of photographer</td>
+                            </tr>
+
+                            <caption>
+                                The list of properties of <code>Photogrpaher</code> entity along with their data types.
+                            </caption>
+                        </table>
+                    </figure>
+
+                    <figure typeof="schema:Table">
+                        <table>
+                            <thead>
+                                <tr><code>Camera</code></tr>
+                                <tr>
+                                    <th>
+                                        <center>Property</center>
+                                    </th>
+                                    <th>
+                                        <center>Type</center>
+                                    </th>
+                                    <th>
+                                        <center>Description</center>
+                                    </th>
+                                </tr>
+                            </thead>
+
+                            <tr>
+                                <td>model</td>
+                                <td>string</td>
+                                <td>the model of the camera</td>
+                            </tr>
+                            <tr>
+                                <td>brand</td>
+                                <td>string</td>
+                                <td>the brand of the camera</td>
+                            </tr>
+                           
+                            <caption>
+                                The list of properties of the <code>Camera</code> entity along with their data types.
+                            </caption>
+                        </table>
+                    </figure>
+
+                    <figure typeof="schema:Table">
+                        <table>
+                            <thead>
+                                <tr><code>Photo</code></tr>
+                                <tr>
+                                    <th>
+                                        <center>Property</center>
+                                    </th>
+                                    <th>
+                                        <center>Type</center>
+                                    </th>
+                                    <th>
+                                        <center>Description</center>
+                                    </th>
+                                </tr>
+                            </thead>
+
+                            <tr>
+                                <td>photoId</td>
+                                <td>string</td>
+                                <td>the id of the photo</td>
+                            </tr>
+                            <tr>
+                                <td>photoUrl</td>
+                                <td>string</td>
+                                <td>the url of the photo</td>
+                            </tr>
+                            <tr>
+                                <td>description</td>
+                                <td>string</td>
+                                <td>the description of the photo</td>
+                            </tr>
+                            <tr>
+                                <td>views</td>
+                                <td>number</td>
+                                <td>the number of views of the photo</td>
+                            </tr>
+                            <tr>
+                                <td>downoalds</td>
+                                <td>number</td>
+                                <td>the number of downoalds of the photo</td>
+                            </tr>
+                            <tr>
+                                <td>submitted</td>
+                                <td>date</td>
+                                <td>the date at which the photo was submitted</td>
+                            </tr>
+                            <caption>
+                                The list of properties of the <code>Photo</code> entity along with their data types.
+                            </caption>
+                        </table>
+                    </figure>
+
+                    <figure typeof="schema:Table">
+                        <table>
+                            <thead>
+                                <tr><code>Location</code></tr>
+                                <tr>
+                                    <th>
+                                        <center>Property</center>
+                                    </th>
+                                    <th>
+                                        <center>Type</center>
+                                    </th>
+                                    <th>
+                                        <center>Description</center>
+                                    </th>
+                                </tr>
+                            </thead>
+
+                            <tr>
+                                <td>country</td>
+                                <td>string</td>
+                                <td>the country in which the photo was took</td>
+                            </tr>
+                            <tr>
+                                <td>city</td>
+                                <td>string</td>
+                                <td>the city in which the photo was took</td>
+                            </tr>
+                            <tr>
+                                <td>latitude</td>
+                                <td>string</td>
+                                <td>the latitude of the place in which the photo was took</td>
+                            </tr>
+                            <tr>
+                                <td>longitude</td>
+                                <td>string</td>
+                                <td>the longitude of the place in which the photo was took</td>
+                            </tr>
+                           
+                            <caption>
+                                The list of properties of the <code>Location</code> entity along with their data types.
+                            </caption>
+                        </table>
+                    </figure>
+
+                    <figure typeof="schema:Table">
+                        <table>
+                            <thead>
+                                <tr><code>Metadata</code></tr>
+                                <tr>
+                                    <th>
+                                        <center>Property</center>
+                                    </th>
+                                    <th>
+                                        <center>Type</center>
+                                    </th>
+                                    <th>
+                                        <center>Description</center>
+                                    </th>
+                                </tr>
+                            </thead>
+
+                            <tr>
+                                <td>width</td>
+                                <td>number</td>
+                                <td>the width of the photo</td>
+                            </tr>
+                            <tr>
+                                <td>height</td>
+                                <td>number</td>
+                                <td>the height of the photo</td>
+                            </tr>
+                            <tr>
+                                <td>aspectRatio</td>
+                                <td>number</td>
+                                <td>the aspect ratio of the photo</td>
+                            </tr>
+                            <tr>
+                                <td>color</td>
+                                <td>string</td>
+                                <td>the color of the photo</td>
+                            </tr>
+                            <tr>
+                                <td>format</td>
+                                <td>string,RGB,hex</td>
+                                <td>the format of the photo</td>
+                            </tr>
+                           
+                            <caption>
+                                The list of properties of the <code>Metadata</code> entity along with their data types.
+                            </caption>
+                        </table>
+                    </figure>
+
+                    <figure typeof="schema:Table">
+                        <table>
+                            <thead>
+                                <tr><code>Human, Object, Animal, Landform</code></tr>
+                                <tr>
+                                    <th>
+                                        <center>Property</center>
+                                    </th>
+                                    <th>
+                                        <center>Type</center>
+                                    </th>
+                                    <th>
+                                        <center>Description</center>
+                                    </th>
+                                </tr>
+                            </thead>
+
+                            <tr>
+                                <td>keyword</td>
+                                <td>string</td>
+                                <td>the keyword which can be an object, animal, landform or human</td>
+                            </tr>
+                           
+                           
+                            <caption>
+                                The list of properties of the <code>Human, Object, Animal, Landform</code> entity along with their data types.
+                            </caption>
+                        </table>
+                    </figure>
+                    
+                </section><!-- data-modelling -->
+            </section>
+        </section>
+
+</body>
+
+</html>

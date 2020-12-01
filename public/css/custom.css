@@ -1,0 +1,7 @@
+figure[typeof="sa:Image"] {
+    border-top: none !important;
+}
+
+figcaption {
+    border-bottom: none !important;
+}

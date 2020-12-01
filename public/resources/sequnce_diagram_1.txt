@@ -1,0 +1,13 @@
+title Generic sequence diagram - photos filtering
+
+Client->UNSA API: getPhotos(filters) + token
+UNSA API->JWT Handler:validate token
+JWT Handler-->UNSA API: isAuth 
+
+opt isAuth
+UNSA API->PhotoController: send request
+PhotoController->GetPhotosQuery: get input and map to sparql query syntax
+GetPhotosQuery->SPARQL Endpoint: send sparlQueryWithFilters
+SPARQL Endpoint->Graph Data: selecting data based on query
+Graph Data-->Client: return json data response
+end
