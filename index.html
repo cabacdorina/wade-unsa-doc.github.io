@@ -52,34 +52,32 @@
             <h2>Technologies</h2>
             <ul>
                 <li>
-                    <p><a href="https://jwt.io">.NET Core</a> .NET Core is a new version of .NET Framework, which is a
-                        free, open-source, general-purpose development platform maintained by Microsoft. It is a
-                        cross-platform framework that runs on Windows, macOS, and Linux operating systems.
+                    <p><a href="https://docs.microsoft.com/en-us/dotnet/core/introduction">.NET Core</a> is the new version of .NET Framework offered by Microsoft.
+                        The development platform is open-source and the feature of beeing a cross-platform framework makes 
+                        to run on Windows, Linux, macOS.
 
-                        .NET Core Framework can be used to build different types of applications such as mobile,
-                        desktop, web, cloud, IoT, machine learning, microservices, game, etc</p>
+                        .NET Core Framework can be used to build different projects on different device platform such as mobile android or iOS,
+                        desktop applications, web based applications. Also the platform can be used to create in-cloud applications, IoT, machine learning, microservices, game, etc</p>
                 </li>
                 <li>
-                    <p><a href="http://ionicframework.com/docs/">Ionic 5</a> can be used to develop cross-platform app
-                        built with web technologies.
-                        Free and open source, Ionic offers a library of mobile-optimized UI components, gestures, and
-                        tools for building fast, highly interactive apps.
-                        Ionic is based on different web framework such us Angular, React, VueJS and comes with many
-                        significant performance, usability, and feature improvements over the past versions.</p>
+                    <p><a href="http://ionicframework.com/docs/">Ionic 5</a> is a great tool that can be used easily in order to develop multi device application
+                        by using just web technologies.
+                        It is a free and an open source project that offers a library of mobile-optimized UI components that can be used in a raw manner to create 
+                        a modern application. The developer can create custom components or wrappers starting from there.
+                        Ionic is based on different web framework such us Angular, React, VueJS. Ionic has a great history and it is 
+                        used on high level by different companies. 
+                        The main characteristic is the significant performance, usability, and feature improvements over the past versions.
+                    </p>
                 </li>
                 <li>
-                    <p><a href="https://angular.io/">Angular</a> is an application design framework and development
-                        platform for creating efficient and sophisticated single-page apps.
+                    <p><a href="https://angular.io/">Angular</a> is an front-end application design framework and is used in development
+                        for creating different applications.
                         It is based on HTML as your template language and lets you extend its syntax to build custom
-                        components. The components have related typescript files. <b>Typescript</b> is a primary
-                        language for Angular application development. It is a superset of JavaScript with design-time
-                        support for type safety and tooling. </p>
+                        components. The components have related typescript files. <b>Typescript</b> is a modern programming language developed by Microsoft
+                    </p>
                 </li>
                 <li>
-                    <p><a href="https://jwt.io">JWT (JSON Web Tokens)</a> is an open standard (RFC 7519) that defines a
-                        compact and self-contained way for securely transmitting information between parties as a JSON
-                        object. This information can be verified and trusted because it is digitally signed. JWTs can be
-                        signed using a secret (with the HMAC algorithm) or a public/private key pair using RSA.</p>
+                    <p><a href="https://jwt.io">JWT (JSON Web Tokens)</a> is an open standard (RFC 7519) that characterizes a compact and self-contained way for safely transmitting data between parties as a JSON question. This data can be confirmed and trusted since it is carefully marked. JWTs can be marked employing a mystery (with the HMAC calculation) or a public/private key combine utilizing RSA.</p>
                 </li>
                 <li>
                     <p><a href="http://graphdb.ontotext.com/">GraphDB</a> is an enterprise ready Semantic Graph
@@ -153,30 +151,32 @@
                         <p><code>Photo use cases</code> <br/>
                             There are a lot of use cases, for example we can add a photo, retrieve a photo by id,
                             or by different criteria specified by the user. One specific use case is when a user
-                            wants to visualize photos from a specific category, a specified location or a specified
+                            wants to visualize photos from a specific category, <i>*a specified location or a specified
                              photographer. 
-                            One useful  feature  could be the most downloaded or viewed photos. They can be used to
+                            One useful  feature  could be the most downloaded or viewed photos.</i> They can be used to
                             understand people's preferences. This information could be used by interested people.
                         </p>
                     </li>
                     <li>
                         <p>
                             <code>Location use case </code><br/>
-                            Based on user geolocation and history search, the application gives personalized photos
+                            <i>*Based on user geolocation and history search, the application gives personalized photos
                             recommendations
                             (gives photos with places to visit, places which are in users area preferences eg. museums, cinema).
                             After we retrieve the personalized recommandation photos, the user may want to see
                             their localization. In this situation we have a specific use case for retrieving the 
                             locations from photos.
                             Another use case is to see the location in which the most photos were took.  
+                           </i>
                         </p>
                     </li>
                     <li>
                         <p><code>Photogrpaher use case</code> 
-                            A very common use case is to retrieve information about most famous photographers.
+                            <i>*A very common use case is to retrieve information about most famous photographers.
                             The user is also able to retrieve information for a specific photographer even
                             if this is not famous, or to retrieve all photographers and information about them.
                             Another use case is to get locations photographed by a specific photographer.
+                            </i>
                         </p>
                     </li>
                     <li>
@@ -554,9 +554,137 @@
                                 The list of properties of the <code>Human, Object, Animal, Landform</code> entity along with their data types.
                             </caption>
                         </table>
-                    </figure>
-                    
-                </section><!-- data-modelling -->
+                    </figure>                    
+                </section>
+
+                <section id="conclusion">
+                    <h2>General conclusion and future views</h2>
+                    <p>
+                        Unsa is an application which is destinated to photography lovers.
+                        The proposed document is associated with a prototype application 
+                        that currently offers the following functionalities:
+                        Users are able to visualize photos, to compare , augment and
+                        filter them. 
+                        The recommandation part is still in work.
+                        In addition to the client application,
+                        UNSA also expose an api that users can access in order to use it in other applications. 
+                        <p>In case of <strong>migration</strong> of the proposed solution: API and client application,
+                        for the population of the data graph (triple store) it will be necessary 
+                        a long time because despite the fact that the code is asynchronous, 
+                        when inserting new data it is necessary to synchronize the insertion operations of 
+                        new triples (eg: a metadata associated with a photo has a color,
+                        so it is necessary to insert the color entity after which the metadata instance 
+                        will be linked) in order to keep the data consistent.
+                       </p>
+                    </p>
+                    <aside typeof="schema:WPSideBar">
+                        <center>
+                        </center>
+                    </aside>
+                </section>
+
+                <section typeof="sa:ReferenceList" id="references">
+                    <h2>References</h2>
+                    <dl>
+                        <dt>.NET Core Framework</dt>
+                        <dd id="ref-ionic" typeof="schema:CreativeWork"
+                            resource="https://dotnet.microsoft.com/">
+                            <cite property="schema:name">
+                                <a href="https://dotnet.microsoft.com/">.NET Core</a>
+                            </cite>,
+                            by
+                            <span property="schema:author" typeof="schema:Organization">
+                                <span property="schema:name">Microsoft</span>
+                            </span>
+                        </dd>
+
+                        <dt>Implement reads/queries in a CQRS microservice</dt>
+                        <dd id="ref-ionic" typeof="schema:CreativeWork"
+                            resource="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/cqrs-microservice-reads">
+                            <cite property="schema:name">
+                                <a href="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/cqrs-microservice-reads">CQRS</a>
+                            </cite>,
+                            by
+                            <span property="schema:author" typeof="schema:Organization">
+                                <span property="schema:name">Microsoft</span>
+                            </span>
+                        </dd>
+
+                        <dt>Schema Org</dt>
+                        <dd id="ref-ionic" typeof="schema:CreativeWork"
+                            resource="http://ionicframework.com/">
+                            <cite property="schema:name">
+                                <a href="http://ionicframework.com/t">Schema Org</a>
+                            </cite>,
+                            by
+                            <span property="schema:author" typeof="schema:Organization">
+                                <span property="schema:name">
+                                   <a href="https://schema.org/docs/about.html">About</a>
+                                </span>
+                            </span>
+                        </dd>
+
+                        <dt>Ionic Framework</dt>
+                        <dd id="ref-ionic" typeof="schema:CreativeWork"
+                            resource="http://ionicframework.com/">
+                            <cite property="schema:name">
+                                <a href="http://ionicframework.com/t">Ionic</a>
+                            </cite>,
+                            by
+                            <span property="schema:author" typeof="schema:Organization">
+                                <span property="schema:name">Max Lynch, Ben Sperry, and Adam Bradley of Drifty Co.</span>
+                            </span>
+                        </dd>
+        
+                        <dt>Angular Framework</dt>
+                        <dd id="ref-angular" typeof="schema:CreativeWork"
+                            resource="https://angular.io/">
+                            <cite property="schema:name">
+                                <a href="https://angular.io/">Angular</a>
+                            </cite>,
+                            by
+                            <span property="schema:author" typeof="schema:Organization">
+                                <span property="schema:name">Google</span>
+                            </span>
+                        </dd>                         
+        
+                        <dt>GraphDB</dt>
+                        <dd id="ref-ionic" typeof="schema:CreativeWork"
+                            resource="https://ontotext.com/products/graphdb/">
+                            <cite property="schema:name">
+                                <a href="https://ontotext.com/products/graphdb/">GraphDB</a>
+                            </cite>,
+                            by
+                            <span property="schema:author" typeof="schema:Organization">
+                                <span property="schema:name">Ontotext</span>
+                            </span>
+                        </dd>
+        
+                        <dt>JSON Web Tokens</dt>
+                        <dd id="ref-ionic" typeof="schema:CreativeWork"
+                            resource="https://jwt.io/">
+                            <cite property="schema:name">
+                                <a href="https://jwt.io/">JWT</a>
+                            </cite>,
+                            by
+                            <span property="schema:author" typeof="schema:Organization">
+                                <span property="schema:name"> Auth0</span>
+                            </span>
+                        </dd>
+        
+                        <dt>SwaggerHub - OpenAPI</dt>
+                        <dd id="ref-ionic" typeof="schema:CreativeWork"
+                            resource="https://app.swaggerhub.com/">
+                            <cite property="schema:name">
+                                <a href="https://app.swaggerhub.com/">SwaggerHub</a>
+                            </cite>,
+                            by
+                            <span property="schema:author" typeof="schema:Organization">
+                                <span property="schema:name">SmartBear Software</span>
+                            </span>
+                        </dd>        
+                    </dl>
+                </section>        
             </section>
         </section>
 
