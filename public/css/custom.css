@@ -5,3 +5,17 @@ figure[typeof="sa:Image"] {
 figcaption {
     border-bottom: none !important;
 }
+
+/* .pict {
+    width: 235px !important;
+    height: 395px !important;
+} */
+
+.row {
+    display: flex;
+  }
+  
+  .column {
+    flex: 33.33%;
+    padding: 5px;
+  }

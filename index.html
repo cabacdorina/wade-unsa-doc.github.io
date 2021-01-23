@@ -170,6 +170,16 @@
                            </i>
                         </p>
                     </li>
+
+                    <li>
+                        <p><code>Metadata use case</code> <br/>
+                            The user is able to retrieve specific metadata about photos, for example
+                            getting resolution format and aspect ratio, color palette in RGB format, 
+                            camera model and camera brand.
+                            Metadata will be used in other processes like filtering and comparing photo.
+                        </p>
+                    </li>
+
                     <li>
                         <p><code>Photogrpaher use case</code> 
                             <i>*A very common use case is to retrieve information about most famous photographers.
@@ -179,14 +189,7 @@
                             </i>
                         </p>
                     </li>
-                    <li>
-                        <p><code>Metadata use case</code> <br/>
-                            The user is able to retrieve specific metadata about photos, for example
-                            getting resolution format and aspect ratio, color palette in RGB format, 
-                            camera model and camera brand.
-                            Metadata will be used in other processes like filtering and comparing photo.
-                        </p>
-                    </li>
+                    
                 </ul>
                 Each service interogates SPARQL endpoint to find information about entities and relationships between them and also to store data
                 into UNSA's RDF storage implemented with GraphDB.
@@ -200,12 +203,61 @@
 
             <section id="client-side">
                 <h3>Client-side</h3>
-                <figure typeof="sa:Image">
+                <!-- <figure typeof="sa:Image">
                     <img src="public/resources/mocks/unsa_ui.png">
                     <figcaption>
                         The Home View
                     </figcaption>
+                </figure> -->
+<!--                 
+                <figure typeof="sa:Image">
+                    <div class="pict">
+                    <img src="public/resources/phone/visualize.png">
+                    <figcaption>
+                        The Home View
+                    </figcaption>
+                     </div>
+                    
+                     <div class="pict">
+                    <img src="public/resources/phone/visualise.png">
+                    <figcaption>
+                        The Home View
+                    </figcaption>
+                </div>
+                
                 </figure>
+                 -->
+                 <div class="row">
+                    <div class="column">
+                      <img src="public/resources/phone/visualize.png" style="width:100%">
+                    </div>
+                    <div class="column">
+                      <img src="public/resources/phone/visualise.png" style="width:100%">
+                    </div>
+                    <div class="column">
+                      <img src="public/resources/phone/get all.png" style="width:100%">
+                    </div>
+                  </div>
+                  
+                  <figcaption style="text-align: center;">
+                    Photo visualize
+                  </figcaption>
+
+                  <div class="row">
+                    <div class="column">
+                      <img src="public/resources/phone/cat.png" style="width:100%">
+                    </div>
+                    <div class="column">
+                      <img src="public/resources/phone/filter.png" style="width:100%">
+                    </div>
+                    <div class="column">
+                      <img src="public/resources/phone/landform1.png" style="width:100%">
+                    </div>
+                  </div>
+               
+                  <figcaption style="text-align: center;">
+                    Photo filter
+                  </figcaption>
 
                 The application design offers a pleasant experience, because its interface is very intuitive.
                 Also the UI is modern and relies on latest features of Ionic5. 
